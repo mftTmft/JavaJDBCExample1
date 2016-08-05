@@ -9,10 +9,12 @@ import java.sql.Statement;
 public class Main
 {
     public static void main(String[] args)throws ClassNotFoundException,SQLException{
-        Class.forName("oracle.jdbc.Driver.OracleDriver");
+        Class.forName("oracle.jdbc.driver.OracleDriver");
         Connection my_connection= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl","zeinali","admin123");
+        my_connection.setAutoCommit(false);
         Statement my_statement=my_connection.createStatement();
-        my_statement.executeUpdate("insert into tbl1(id,name,family)values(200,'Hassan','Moradi')");
+        my_statement.executeUpdate("insert into tbl1(id,name,family)values(201,'Hassan','Moradi')");
+        my_connection.commit();
         my_statement.close();
         my_connection.close();
     }
